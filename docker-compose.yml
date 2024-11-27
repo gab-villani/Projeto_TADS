@@ -1,13 +1,18 @@
-version: "3.8"
+version: '3.8'
 
 services:
-  flower-classifier-api:
+  train:
     build:
       context: .
-      dockerfile: Dockerfile
+    container_name: flower-model-training
+    command: python train.py
+
+  api:
+    build:
+      context: .
+    container_name: flower-api
     ports:
-      - "5000:5000" # Mapeia a porta 5000 do host para o container
-    volumes:
-      - ./app:/app # Monta os arquivos do projeto no container
-    environment:
-      - PYTHONUNBUFFERED=1 # Garante que os logs sejam exibidos em tempo real
+      - "5000:5000"
+    command: python app.py
+    depends_on:
+      - train
