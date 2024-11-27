@@ -16,7 +16,7 @@ services:
     container_name: flower-api
     ports:
       - "5000:5000"
-    command: python3 /app/app.py
+    command: python3 app/app.py
     volumes:
       - .:/app
     restart: always
