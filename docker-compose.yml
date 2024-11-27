@@ -5,18 +5,22 @@ services:
     build:
       context: .
     container_name: flower-model-training
-    command: python3 app/model/train.py
+    command: python3 app/model/train.py  # Comando para iniciar o treinamento
     volumes:
       - .:/app
-    restart: "no"
+    restart: "no"  # Não reiniciar após a execução do treinamento
+    environment:
+      - MODEL_PATH=/app/model/flower_model.h5  # Caso o treinamento use o modelo
 
   api:
     build:
       context: .
     container_name: flower-api
     ports:
-      - "5000:5000"
-    command: python3 app/app.py
+      - "5000:5000"  # Expondo a porta 5000 do container
+    command: python3 app/app.py  # Comando para iniciar a API
     volumes:
-      - .:/app
-    restart: always
+      - .:/app  # Montando o diretório atual no container
+    restart: always  # Reiniciar o serviço da API sempre que necessário
+    environment:
+      - MODEL_PATH=/app/model/flower_model.h5  # Caminho para o modelo

@@ -10,8 +10,10 @@ app = Flask(__name__)
 
 # Carregar modelo
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Diretório atual do app.py
-MODEL_PATH = os.path.join(BASE_DIR, "model", "flower_model.h5")
+# Ler do .env ou variáveis de ambiente
+MODEL_PATH = os.getenv("MODEL_PATH", "/default/path/to/model/flower_model.h5")
+
+print(f"O caminho do modelo é: {MODEL_PATH}")
 model = load_model(MODEL_PATH)
 
 # Classes (modifique de acordo com o dataset)
