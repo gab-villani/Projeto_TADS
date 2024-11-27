@@ -5,4 +5,4 @@ Pillow
 matplotlib
 seaborn
 scikit-learn
-Flask-cors
+
