@@ -5,7 +5,10 @@ services:
     build:
       context: .
     container_name: flower-model-training
-    command: python train.py
+    command: python /app/train.py
+    volumes:
+      - .:/app
+    restart: "no"
 
   api:
     build:
@@ -13,6 +16,7 @@ services:
     container_name: flower-api
     ports:
       - "5000:5000"
-    command: python app.py
-    depends_on:
-      - train
+    command: python /app/app.py
+    volumes:
+      - .:/app
+    restart: always
