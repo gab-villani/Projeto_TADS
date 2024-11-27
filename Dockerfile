@@ -1,14 +1,20 @@
-# Use uma imagem base do Python
-FROM python:3.10-slim
+# Dockerfile
 
-# Definir diretório de trabalho no container
+# Use uma imagem base do Python (como exemplo)
+FROM python:3.9
+
+# Configurações básicas
 WORKDIR /app
 
-# Copiar os arquivos do projeto para o container
-COPY app/ /app/
+# Instale as dependências
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Instalar dependências
-RUN pip install --no-cache-dir -r /app/requirements.txt
+# Copie o código da aplicação
+COPY . .
 
-# Expor a porta que será usada pela API (apenas para a API)
+# Exponha a porta que o app usará
 EXPOSE 5000
+
+# Comando para iniciar com Gunicorn
+CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]
