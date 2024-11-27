@@ -5,7 +5,7 @@ services:
     build:
       context: .
     container_name: flower-model-training
-    command: python /app/model/init.py
+    command: python /app/model/train.py
     volumes:
       - .:/app
     restart: "no"
