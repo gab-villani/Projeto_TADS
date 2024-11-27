@@ -4,9 +4,11 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import numpy as np
 import os
+from flask_cors import CORS
 
 
 app = Flask(__name__)
+CORS(app)
 
 # Carregar modelo
 
