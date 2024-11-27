@@ -64,7 +64,7 @@ model.fit(
 )
 
 # Salvar o modelo
-model.save('flower_model.h5')
+model.save('/app/model/flower_model.h5')
 
 # Avaliação no conjunto de validação
 val_gen.reset()
