@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  flower-classifier-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000" # Mapeia a porta 5000 do host para o container
+    volumes:
+      - ./app:/app # Monta os arquivos do projeto no container
+    environment:
+      - PYTHONUNBUFFERED=1 # Garante que os logs sejam exibidos em tempo real
