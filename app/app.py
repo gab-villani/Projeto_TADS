@@ -16,6 +16,11 @@ model = load_model(MODEL_PATH)
 # Classes (modifique de acordo com o dataset)
 CLASS_NAMES = ['Daisy', 'Dandelion', 'Roses', 'Sunflowers', 'Tulips']
 
+
+@app.route('/ping', methods=['GET'])
+def ping():
+    return jsonify({"message": "Pong!"})
+
 @app.route('/classify', methods=['POST'])
 def classify():
     if 'file' not in request.files:
